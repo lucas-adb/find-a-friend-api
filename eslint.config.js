@@ -11,7 +11,8 @@ export default defineConfig([
   {
     rules: {
       "semi": ["error", "always"],
-      "semi-spacing": ["error", {"before": false, "after": true}],
+      "semi-spacing": ["error", { "before": false, "after": true }],
+      "object-curly-spacing": ["error", "always"]
     }
   }
 ]);
