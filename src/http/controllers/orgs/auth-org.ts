@@ -13,7 +13,23 @@ export async function auth(request: FastifyRequest, reply: FastifyReply) {
 
   try {
     const useCase = makeAuthOrgUseCase();
-    await useCase.auth({ email, password });
+    const { org } = await useCase.auth({ email, password });
+
+    const token = await reply.jwtSign({}, { sign: { sub: org.id } });
+    const refreshToken = await reply.jwtSign(
+      {},
+      { sign: { sub: org.id, expiresIn: '7d' } }
+    );
+
+    reply
+      .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true,
+        sameSite: true,
+        httpOnly: true,
+      })
+      .status(200)
+      .send({ token });
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
       return reply.status(400).send({
@@ -23,6 +39,4 @@ export async function auth(request: FastifyRequest, reply: FastifyReply) {
 
     throw error;
   }
-
-  reply.status(200).send({ email, password });
 }
