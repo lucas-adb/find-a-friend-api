@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import z from "zod";
 import { makeCreateOrgUseCase } from "@/factories/make-create-org-use-case.js";
+import { OrgAlreadyExistsError } from "@/use-cases/errors/org-already-exists-error.js";
 
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
@@ -20,8 +21,12 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       name, email, address, phone, password
     });
   } catch (error) {
-    console.error(error);
-    // todo: add error for when org already exists
+    if (error instanceof OrgAlreadyExistsError) {
+      return reply.status(409).send({
+        message: error.message
+      });
+    }
+
     throw error;
   }
 
