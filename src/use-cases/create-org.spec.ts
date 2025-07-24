@@ -54,7 +54,7 @@ describe('Create Org', () => {
 
     await sut.create(data);
 
-    expect(async () => {
+    await expect(async () => {
       await sut.create(data);
     }).rejects.toBeInstanceOf(OrgAlreadyExistsError);
   });
