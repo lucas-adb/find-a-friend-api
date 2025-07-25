@@ -24,8 +24,6 @@ export class AuthOrgUseCase {
 
     const doesPasswordMatch = await compare(password, org.password_hash);
 
-    console.log(doesPasswordMatch);
-
     if (!doesPasswordMatch) {
       throw new InvalidCredentialsError();
     }

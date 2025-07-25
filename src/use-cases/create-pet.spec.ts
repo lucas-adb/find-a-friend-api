@@ -11,8 +11,8 @@ let sut: CreatePetUseCase;
 
 describe('Create Pet', () => {
   beforeEach(() => {
-    repository = new InMemoryPetRepository();
     orgRepository = new InMemoryOrgRepository();
+    repository = new InMemoryPetRepository(orgRepository);
 
     sut = new CreatePetUseCase(repository, orgRepository);
   });
