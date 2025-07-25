@@ -15,6 +15,7 @@ describe('Create Org e2e', () => {
     const data = {
       name: 'Lucas Alves',
       email: 'lucas@mail.com',
+      city: 'Goiânia',
       address: 'rua x',
       phone: '99999999',
       password: '123456',

@@ -6,6 +6,7 @@ import { OrgAlreadyExistsError } from './errors/org-already-exists-error.js';
 interface CreateOrgUseCaseRequest {
   name: string;
   email: string;
+  city: string;
   address: string;
   phone: string;
   password: string;
@@ -21,6 +22,7 @@ export class CreateOrgUseCase {
   async create({
     name,
     email,
+    city,
     address,
     phone,
     password,
@@ -36,6 +38,7 @@ export class CreateOrgUseCase {
     const org = await this.orgsRepository.create({
       name,
       email,
+      city,
       address,
       phone,
       password_hash,

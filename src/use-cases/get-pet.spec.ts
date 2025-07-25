@@ -21,6 +21,7 @@ describe('Create Pet', () => {
     const OrgData = {
       name: 'Lucas Alves',
       email: 'lucas@mail.com',
+      city: 'Goiânia',
       address: 'rua x',
       phone: '99999999',
       password_hash: '123456',

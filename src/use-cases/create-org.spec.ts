@@ -17,6 +17,7 @@ describe('Create Org', () => {
     const data = {
       name: 'Lucas Alves',
       email: 'lucas@mail.com',
+      city: 'Goiânia',
       address: 'rua x',
       phone: '99999999',
       password: '123456',
@@ -31,6 +32,7 @@ describe('Create Org', () => {
     const data = {
       name: 'Lucas Alves',
       email: 'lucas@mail.com',
+      city: 'Goiânia',
       address: 'rua x',
       phone: '99999999',
       password: '123456',
@@ -47,6 +49,7 @@ describe('Create Org', () => {
     const data = {
       name: 'Lucas Alves',
       email: 'lucas@mail.com',
+      city: 'Goiânia',
       address: 'rua x',
       phone: '99999999',
       password: '123456',
