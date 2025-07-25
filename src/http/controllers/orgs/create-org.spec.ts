@@ -2,7 +2,7 @@ import { app } from '@/app.js';
 import request from 'supertest';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
-describe('Auth Org e2e', () => {
+describe('Create Org e2e', () => {
   beforeAll(async () => {
     await app.ready();
   });
@@ -11,7 +11,7 @@ describe('Auth Org e2e', () => {
     await app.close();
   });
 
-  test('auth org', async () => {
+  test('creates org', async () => {
     const data = {
       name: 'Lucas Alves',
       email: 'lucas@mail.com',
@@ -20,16 +20,8 @@ describe('Auth Org e2e', () => {
       password: '123456',
     };
 
-    await request(app.server).post('/orgs').send(data);
+    const response = await request(app.server).post('/orgs').send(data);
 
-    const authResponse = await request(app.server)
-      .post('/orgs/auth')
-      .send({ email: 'lucas@mail.com', password: '123456' });
-
-    expect(authResponse.statusCode).toEqual(200);
-
-    expect(authResponse.body).toEqual({
-      token: expect.any(String),
-    });
+    expect(response.statusCode).toEqual(201);
   });
 });
