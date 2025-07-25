@@ -30,6 +30,8 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       description,
       org_id: request.user.sub,
     });
+
+    return reply.status(201).send();
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
       return reply.status(404).send({
@@ -39,6 +41,4 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 
     throw error;
   }
-
-  return reply.status(201).send();
 }
